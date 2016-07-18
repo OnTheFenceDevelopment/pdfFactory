@@ -26,10 +26,13 @@ namespace PDFFactory
 
         private void ShowFileDialog(TextBox targetTextBox)
         {
+            var downloadsFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads";
+
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "PDF Files (*.pdf) | *.pdf",
-                Multiselect = false
+                Multiselect = false,
+                InitialDirectory = downloadsFolderPath
             };
 
             openFileDialog.ShowDialog();
@@ -86,8 +89,13 @@ namespace PDFFactory
                     txtFile2.Text
                 };
 
-                // TODO: Prompt for filename
+                // Prompt for filename
+                var filenameDialog = new FilenameDialog();
+                var result = filenameDialog.ShowDialog(this);
 
+                if (result == DialogResult.Cancel)
+                    return;
+                
                 using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
                 {
                     using (Document document = new Document())
@@ -109,13 +117,15 @@ namespace PDFFactory
                     }
                     bytes = memoryStream.ToArray();
                 }
+
                 string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                System.IO.File.WriteAllBytes(System.IO.Path.Combine(folderPath, "MergedDocument.pdf"), bytes);
+
+                System.IO.File.WriteAllBytes(System.IO.Path.Combine(folderPath, filenameDialog.Filename), bytes);
                 txtFile1.Text = string.Empty;
                 txtFile2.Text = string.Empty;
                 btnJoin.Enabled = CanJoin;
 
-                MessageBox.Show("File Joined Successfully");
+                MessageBox.Show(this, "File Joined Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception exception)
             {

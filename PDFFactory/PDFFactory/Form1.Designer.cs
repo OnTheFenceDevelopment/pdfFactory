@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnJoin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@
             // 
             // btnJoin
             // 
+            this.btnJoin.Enabled = false;
             this.btnJoin.Location = new System.Drawing.Point(220, 118);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(75, 23);
@@ -137,6 +139,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnJoin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PDF Factory";
             this.ResumeLayout(false);
