@@ -127,7 +127,7 @@ namespace PDFFactory
 
                 MessageBox.Show(this, "File Joined Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw;
             }

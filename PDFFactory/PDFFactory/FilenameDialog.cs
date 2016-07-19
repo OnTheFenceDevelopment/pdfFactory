@@ -27,7 +27,7 @@ namespace PDFFactory
                 return;
             } else if (txtFilename.Text.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             {
-                MessageBox.Show(this, "You have entered an invalid filename - please try again!", "Filename Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "You have entered an invalid filename - please try again!", "Invalid Filename", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
